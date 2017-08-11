@@ -12,22 +12,19 @@ class LoginForm extends Component {
     this.setState({ error: '', loading: true });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(this.onLoginSucess.bind(this))
+      .then(this.onLoginSuccess.bind(this))
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(this.onLoginSucess.bind(this))
+          .then(this.onLoginSuccess.bind(this))
           .catch(this.onLoginFail.bind(this));
       });
   }
 
   onLoginFail() {
-    this.setState({
-      error: 'Authentication Failed.',
-      loading: false
-    });
+    this.setState({ error: 'Authentication Failed', loading: false });
   }
 
-  onLoginSucess() {
+  onLoginSuccess() {
     this.setState({
       email: '',
       password: '',
@@ -38,11 +35,12 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.state.loading) {
-      return <Spinner size='small' />;
+      return <Spinner size="small" />;
     }
+
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
-        Login
+        Log in
       </Button>
     );
   }
@@ -52,8 +50,8 @@ class LoginForm extends Component {
       <Card>
         <CardSection>
           <Input
-            placeholder='user@gmail.com'
-            label='Email'
+            placeholder="user@gmail.com"
+            label="Email"
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
           />
@@ -62,8 +60,8 @@ class LoginForm extends Component {
         <CardSection>
           <Input
             secureTextEntry
-            placeholder='password'
-            label='Password'
+            placeholder="password"
+            label="Password"
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
@@ -90,4 +88,3 @@ const styles = {
 };
 
 export default LoginForm;
-

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
 const Spinner = ({ size }) => {
@@ -15,5 +15,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   }
-}
+};
+
 export { Spinner };
